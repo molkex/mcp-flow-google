@@ -80,14 +80,13 @@ Ask your agent: *"connect my Google account to openflow"* — it knows the steps
 
 ## What your agent gets
 
-**29 tools**, described so the agent picks the right one without being told twice.
+**27 tools**, described so the agent picks the right one without being told twice.
 
 | Group | Tools |
 |---|---|
 | **Images** | `generate_image`, `upscale_image`, `generate_scene` (build a location from a 3D layout map, so several shots share one geometry) |
 | **Video** | `generate_video`, `generate_video_from_image`, `generate_video_between_frames`, `generate_video_with_reference`, `extend_video`, `edit_video`, `upscale_video` |
 | **Characters** | `create_character_from_photo`, `create_character_from_description`, `generate_with_face`, `generate_character_turnaround`, `generate_character_expression_sheet`, `list_characters`, `update_character` |
-| **Voice** | `generate_voice` — Gemini TTS with named voices, performance styles and tempo control |
 | **Status** | `flow_status`, `flow_health`, `flow_dashboard`, `check_credits`, `check_job`, `list_models`, `fetch_media` |
 
 Plus five ready-made **scenarios** (MCP prompts): UGC video with a character, character turnaround,
@@ -121,9 +120,6 @@ Written down because finding them yourself costs time:
 - **One Google account is one pool of credits.** Video is where they go. Images do not spend them.
 - **Concurrency is capped per account** (8 simultaneous generations), measured against Google's own
   ceiling. Exceeding it returns a wait, not an error — jobs go back into the queue and retry.
-- **Voice runs on Gemini TTS**, which is metered by a separate free key you create at
-  [aistudio.google.com/apikey](https://aistudio.google.com/apikey). The free tier allows about
-  3 clips per minute. `add_voice_key` attaches yours.
 - **Generated files stay on the server until it runs low on disk**, and even then only files you
   already downloaded are removed. Anything you never fetched is never deleted. Every result comes
   back with a direct download link — save it into your project and it is yours for good.
