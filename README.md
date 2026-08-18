@@ -1,6 +1,7 @@
-# MCP Flow Google
+# openFlow — MCP server for Google Flow: Veo video and Nano Banana images
 
-**Your AI agent draws and shoots video. Through Google Flow, on your own account.**
+**Generate video and images inside Claude Code, Cursor or any MCP client — through Google Flow,
+on your own account.**
 
 [![MCP](https://img.shields.io/badge/MCP-server-000?logo=modelcontextprotocol&logoColor=white)](https://modelcontextprotocol.io)
 [![Works with Claude Code](https://img.shields.io/badge/works%20with-Claude%20Code-d97757)](https://claude.com/claude-code)
@@ -14,6 +15,9 @@ claude mcp add --transport http openflow https://openflowmcp.com/mcp
 
 That is the install. No API key to buy, no SDK, no card. Ask your agent to *"generate a paper boat
 on a puddle"* and you get a 1376×768 image in about eighteen seconds.
+
+Video runs on **Veo**, images on **Nano Banana** — the same models Google Flow uses in the browser,
+except your agent drives them. Google has no public API for either; this server is the missing wire.
 
 <p align="center">
   <img src="https://openflowmcp.com/v1/showcase/4c37da6f-bbcc-4ad9-9774-f1a1e68b6976.jpg" width="32%" alt="A black hole distorting nearby light, generated through this MCP server">
@@ -34,7 +38,7 @@ This server is the missing piece: MCP on the side your agent speaks, Flow on the
   with 50 credits" — free.
 - **It runs on your account, not ours.** Your credits, your quota, your files. We are the wire, not
   the meter.
-- **Your agent already knows how to use it.** 27 tools with descriptions written for a model to
+- **Your agent already knows how to use it.** 31 tools with descriptions written for a model to
   read, not for a docs page. No prompt engineering to make it pick the right one.
 - **Failures tell you what to do.** Every refusal names the cause, the next step and whether waiting
   helps. Nothing ever answers just "error".
@@ -93,10 +97,15 @@ upscale it and save both into ./media
 | **Images** | `generate_image`, `upscale_image`, `generate_scene` — the last one builds a location from a 3D layout map, so several shots share one geometry instead of drifting |
 | **Video** | `generate_video`, `generate_video_from_image`, `generate_video_between_frames`, `generate_video_with_reference`, `extend_video`, `edit_video`, `upscale_video` |
 | **Characters** | `create_character_from_photo`, `create_character_from_description`, `generate_with_face`, `generate_character_turnaround`, `generate_character_expression_sheet`, `list_characters`, `update_character` |
+| **Music** | `music_generate` — a full track with lyrics and style control; `music_stems` splits it back into vocals and instruments |
 | **Status** | `flow_status`, `flow_health`, `flow_dashboard`, `check_credits`, `check_job`, `list_models`, `fetch_media` |
 
 Five ready-made **scenarios** come with it (MCP prompts): UGC video with a character, character
 turnaround, expression sheet, generate-then-refine, one location from several camera angles.
+
+**Things people ask an agent for, and get in one sentence:** *"generate a video in Claude Code"*,
+*"make a Veo clip from this image"*, *"turn this photo into a character and shoot it from three
+angles"*, *"upscale that video"*, *"write a track with these lyrics"*.
 
 **Models.** Images: Nano Banana 2 (default, ~30 s), Nano Banana Pro (best), Nano Banana 2 Lite.
 Video: 4/6/8/10-second clips, image-to-video, reference-to-video, interpolation between two frames,
@@ -110,8 +119,13 @@ the server never invents a model id.
 | | |
 |---|---|
 | **Images** | **free.** A brand-new key gets 25 before linking a GitHub account; linking is one click, free, and removes the limit for good |
-| **Video** | your own Google credits — 7 for 4 seconds, 10 for 6, 12 for 8 — plus a **$2 subscription** here, which is what keeps the service running |
+| **Video** | your own Google credits — 7 for 4 seconds, 10 for 6, 12 for 8 — plus a subscription here, which is what keeps the service running |
+| **Subscription** | **$6 for a month**, $15 for three, $24 for six, $36 for a year — that last one works out to $3/month. It unlocks video and lets you keep your work out of the public gallery |
 | **Everything else** | nothing. No per-image fee, no markup on credits, no seat pricing |
+
+Pay by card, or send **USDT directly** — TRON (TRC20), BNB Smart Chain (BEP20), TON or Solana. The
+crypto path takes no processor and no fee: you transfer to an address, the subscription turns on by
+itself once the network confirms.
 
 ---
 
@@ -151,6 +165,15 @@ come with Google AI plans.
 **Is my account at risk?**
 The server uses the same tokens Google's own apps use, and nothing else. The concurrency cap exists
 precisely so your account is never hammered.
+
+**Can my Google account get disconnected?**
+The link can drop — if you change your Google password, revoke sessions, or remove the device in
+Google security settings. Nothing is lost when it happens: reconnecting takes a minute, and the
+service tells you about it directly instead of leaving you to guess from a failed generation.
+
+**How do I pay if cards do not work in my country?**
+Send USDT on TRON, BSC, TON or Solana. The cabinet shows an address and an exact amount; the
+subscription turns on by itself once the network confirms — usually within a minute.
 
 **Can I attach several accounts?**
 Yes, and you should — work spreads across them and your rate limits rise with the count.
