@@ -114,6 +114,35 @@ the server never invents a model id.
 
 ---
 
+## Keeping things consistent
+
+Four behaviours worth knowing before you fight them. All measured against this server on
+2026-08-23, not guessed.
+
+**Build reference cards, don't describe the whole scene.** One call re-rolls everything at once:
+fix the focus and the freckles change, fix the freckles and the bottle changes size. Instead
+generate one approved frame per element — the person, the product, the room — and pass their
+`media_id`s as `image_inputs`. Three references held together in a single 21-second call: same
+face, same room, same object, only the arrangement changed.
+
+**Render label text on its own.** Text inside a busy scene comes back mangled or mirrored. The
+same words on a plain grey background, generated as a standalone product shot, come out clean —
+and arrive correct when that shot is used as a reference. Note that a label stops being readable
+once the object is small in frame, so brand names need their own close-up.
+
+**For video, `i2v` holds detail and `r2v` holds identity.** `generate_video_with_reference` treats
+your frame as an example and rebuilds the scene, so faces survive but small things drift — a hair
+strand lying across a cheek was present at two seconds and gone by six. `generate_video_from_image`
+continues that exact frame instead, and the same strand survived start, middle and end. Use r2v
+when you have no frame yet, i2v when you do.
+
+**`generate_scene` fixes geometry, not materials.** The layout map places objects at true positions
+and depths reliably. Left alone it will still reinvent the architecture between shots — one camera
+gave an ordinary window, another gave floor-to-ceiling glazing and a mountain view. Pass the room's
+own reference frame in `image_inputs` alongside the layout and the materials hold.
+
+---
+
 ## What it costs
 
 | | |
