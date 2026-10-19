@@ -1,0 +1,11 @@
+# Проверки Manager для PR и веток агентов. Правила — в molkex/manager-ci.
+name: manager-ci
+on:
+  pull_request:
+  push:
+    branches: ["agent/**"]
+jobs:
+  ci:
+    uses: molkex/manager-ci/.github/workflows/agent-ci.yml@main
+    with:
+      strict_tests: false   # true — когда тесты проекта зелёные, PR с падающими тестами не пройдёт
